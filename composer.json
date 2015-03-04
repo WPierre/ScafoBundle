@@ -1,7 +1,7 @@
 {
 	"name" : "wpierre/scafo",
 	"description" : "A bundle made for scanning and sorting paperwork",
-	"minimum-stability" : "beta",
+	"minimum-stability" : "stable",
 	"homepage" : "https://github.com/WPierre/ScafoBundle",
 	"authors" : [{
 			"name" : "WPierre",
