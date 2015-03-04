@@ -1,0 +1,8 @@
+{# empty Twig template #}
+{% include "WpierreScafoScafoBundle:Default:header.html.twig" with {"page_title":"Création d'un filtre"} %}
+<h1>Création d'un nouveau filtre</h1>
+{{ form(form) }}
+<a href="/Filters/list/{{instance.id}}" class="btn btn-small btn-default"><i class="icon-arrow-left"></i> Retour à la liste des filtres</a>
+
+{% include "WpierreScafoScafoBundle:Filters:documentation.html.twig" %}
+{% include "WpierreScafoScafoBundle:Default:footer.html.twig" %}

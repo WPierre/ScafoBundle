@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Filter" table="filter">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="instanceId" type="integer" column="instance_id" nullable="false"/>
+    <field name="title" type="string" column="title" length="255" nullable="false"/>
+    <field name="orderNumber" type="integer" column="order_number" nullable="true"/>
+    <field name="conditionText" type="string" column="condition_text" length="255" nullable="false"/>
+    <field name="path" type="string" column="path" length="254" nullable="false"/>
+    <field name="filenameFormater" type="string" column="filename_formater" length="255" nullable="true"/>
+    <field name="conditionType" type="integer" column="condition_type" nullable="false"/>
+    <field name="docDateFormater" type="string" column="doc_date_formater" length="255" nullable="true"/>
+    <many-to-one field="instance" target-entity="ConfigInstance">
+      <join-columns>
+        <join-column name="instance_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

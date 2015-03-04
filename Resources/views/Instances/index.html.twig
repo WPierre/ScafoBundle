@@ -1,0 +1,114 @@
+{% include "WpierreScafoScafoBundle:Default:header.html.twig" with {"page_title":"Tableau de bord"} %}
+<h1>Page de l'instance {{instance.instanceName}}</h1>
+
+<p>Actions disponibles</p>
+<ul class="invisible-list">
+    <li><a href="/Instance/Run/processFolderBy1/{{instance.id}}/" class="btn btn-primary" onClick="runIndex('processFolderBy1');return false;">Lancer l'indexation fichier par fichier (FolderBy1) <span class="badge" id="RM_processFolderBy1"></span></a> <span class="waiting_icon" id="waiticon_processFolderBy1"></span> <span class="waiting_time" id="waittime_processFolderBy1"></span></li>
+    <li><a href="/Instance/Run/processFolderBy2/{{instance.id}}/" class="btn btn-primary" onClick="runIndex('processFolderBy2');return false;">Lancer l'indexation par groupe de 2 (FolderBy2) <span class="badge" id="RM_processFolderBy2"></span></a> <span class="waiting_icon" id="waiticon_processFolderBy2"></span> <span class="waiting_time" id="waittime_processFolderBy2"></span></li>
+    <li><a href="/Instance/Run/processFolderBy3/{{instance.id}}/" class="btn btn-primary" onClick="runIndex('processFolderBy3');return false;">Lancer l'indexation par groupe de 3 (FolderBy3) <span class="badge" id="RM_processFolderBy3"></span></a> <span class="waiting_icon" id="waiticon_processFolderBy3"></span> <span class="waiting_time" id="waittime_processFolderBy3"></span></li>
+    <li><a href="/Instance/Run/processFolderBy4/{{instance.id}}/" class="btn btn-primary" onClick="runIndex('processFolderBy4');return false;">Lancer l'indexation par groupe de 4 (FolderBy4) <span class="badge" id="RM_processFolderBy4"></span></a> <span class="waiting_icon" id="waiticon_processFolderBy4"></span> <span class="waiting_time" id="waittime_processFolderBy4"></span></li>
+    <li><a href="/Instance/Run/processFolderBySeparator/{{instance.id}}/" class="btn btn-primary" onClick="runIndex('processFolderBySeparator');return false;">Lancer l'indexation par séparateur (FolderBySeparator) <span class="badge" id="RM_processFolderBySeparator"></span></a> <span class="waiting_icon" id="waiticon_processFolderBySeparator"></span> <span class="waiting_time" id="waittime_processFolderBySeparator"></span></li>
+    <li><a href="/Instance/Run/processRefilterPDF/{{instance.id}}/" class="btn btn-primary" onClick="runIndex('processRefilterPDF');return false;">Réindexer des PDF (Refilter_PDF) <span class="badge" id="RM_RefilterPDF"></a> <span class="waiting_icon" id="waiticon_RefilterPDF"></span> <span class="waiting_time" id="waittime_RefilterPDF"></span></li>
+    <li><a href="/Instance/Run/processPicturesToCBZ/{{instance.id}}/" class="btn btn-primary" onClick="runIndex('processPicturesToCBZ');return false;">Convertir des BD images en CBZ (PicturesToCBZ) <span class="badge" id="RM_PicturesToCBZ"></a> <span class="waiting_icon" id="waiticon_PicturesToCBZ"></span> <span class="waiting_time" id="waittime_PicturesToCBZ"></span></li>
+</ul>
+<a href="http://www.google.fr" onClick="runIndex('processFolderBy1');return false;">Test</a>
+
+<script type="text/javascript">
+    var instance_id={{instance.id}};
+var tid = setInterval(refreshRemaining, 5000);
+function refreshRemaining() {
+    
+    $.getJSON( "/Instance/GetRemaining/"+instance_id+"/", function( data ) {
+        $.each( data, function( key, val ) {
+            if (val == 0){ val = null;}
+            $( "#RM_"+key ).html( val );
+                //items.push( "<li id='" + key + "'>" + val + "</li>" );
+        });
+    });
+}    
+refreshRemaining();
+$(function() {
+    $( "#dialog" ).dialog({
+        autoOpen: false,
+        width: 1000,
+        height: 500,
+        title: "Résultat de l'indexation"
+    });
+});
+
+
+function runIndex(index_type){
+    //on ferme le dialog si nécessaire
+    $( "#dialog" ).dialog("close");
+    
+    //on commence par setter l'icône d'attente
+    $( "#waiticon_"+index_type ).html('<img src="/bundles/wpierrescafoscafo/images/wait16.gif" />');
+    timerstart(index_type);
+    //ensuite, on fait l'appel AJAX
+    $.ajax({
+        url: "/Instance/Run/"+index_type+"/"+instance_id+"/",
+        type: "POST",
+        timeout: 3600000,
+        dataType: "html",
+        qty_input: $(this),
+        index_type: index_type,
+        success: function(html_data, textStatus, jqXHR) {
+            /* here is the input, which triggered this AJAX request */
+            //console.log(this.qty_input);
+            /* here is any other parameter you set when initializing the ajax method */
+            //console.log(this.anything_else_i_want_to_pass_in);
+            //ailleurs, lorsque l'appel ajax est terminé, on met le retour dans la div dialog et on affiche dialog    
+            //alert(this.index_type + " => "+html_data);
+            $( "#dialog" ).html(html_data);
+            $( "#waiticon_"+index_type ).html("");
+            timerStop(index_type);
+            $( "#dialog" ).dialog("option","title", "Résultat de l'indexation type : "+index_type);
+            $( "#dialog" ).dialog("open");
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            var msg = 'Scafo a rencontré une erreur : <a href="/Instance/Run/'+index_type+'/'+instance_id+'/">Voir l\'erreur</a>';
+            $( "#dialog" ).html( msg);
+            $( "#waiticon_"+index_type ).html("");
+            timerStop(index_type);
+            $( "#dialog" ).dialog("option","title", "Résultat de l'indexation type : "+index_type);
+            $( "#dialog" ).dialog("open");
+        },
+    });
+}
+
+var timestart  = null;
+var intervals = [];
+function timerstart(index_type){
+    timestart = new Date();
+    $( "#waittime_"+index_type ).html("00:00");
+    intervals[index_type] = setInterval(function(){runTimer(index_type)},1000);
+    //alert("set:"+intervals[index_type]);
+}
+
+function runTimer(index_type){
+    if (timestart != null){
+        var now = new Date();
+        var timeDifference = now.getTime() - timestart.getTime();
+        now.setTime(timeDifference);
+        var minutes_passed = now.getMinutes();
+        if(minutes_passed < 10){
+            minutes_passed = "0" + minutes_passed;
+        }
+        var seconds_passed = now.getSeconds();
+        if(seconds_passed < 10){
+            seconds_passed = "0" + seconds_passed;
+        }
+        $( "#waittime_"+index_type ).html(minutes_passed+":"+seconds_passed);
+    }    
+}
+
+function timerStop(index_type){
+    timestart = null;
+    clearInterval(intervals[index_type]);
+    //alert("unset:"+intervals[index_type]);
+    $( "#waittime_"+index_type ).html("");
+    
+}
+</script>
+<div id="dialog" title="Basic dialog"></div>
+{% include "WpierreScafoScafoBundle:Default:footer.html.twig" %}

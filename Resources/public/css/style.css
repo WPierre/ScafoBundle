@@ -1,0 +1,19 @@
+.ui-dialog-content{
+    font-size: 10px;
+}
+.ui-dialog{
+	top: 50px !important;
+}
+
+.filter_edit_doc{
+	margin-top: 30px;
+}
+
+.invisible-list{
+	list-style-type: none;
+}
+
+.invisible-list li{
+	margin-bottom: 10px;
+}
+

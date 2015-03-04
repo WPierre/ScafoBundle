@@ -1,0 +1,20 @@
+<div class="filter_edit_doc">
+
+	<b>Déplacer le filtre à la position</b><br />Place le filtre AVANT le filtre sélectionné<br /><br />
+    <b>Type de condition</b><br />
+    <ul>
+        <li><i>Recherche par mots individuels</i> : Recherche l'expression dans le texte telle qu'elle est saisie</li>
+        <li><i>Syntaxe Google</i> : Permet de chercher les mots à des endroits différents du document. Les mots qui se suivent peuvent être regroupés avec des guillemets (ex : "facture du" "Crédit Informatique")</li>
+        <li><i>Expression régulière</i> : Permet de chercher les mots à l'aide d'une expression régulière PHP</li>
+    </ul>
+    <b>Texte à rechercher</b><br />Voir point ci-dessus en fonction de l'option sélectionnée<br /><br />
+    <b>Chemin de stockage</b><br />A partir de la racine du repository Pydio (ex : /CPAM/Remboursements)<br /><br />
+    <b>Masque du nom de fichier</b><br />Le nom du fichier de sortie. Ajouter %date% pour insérer la date du document (ou la date du jour si date document non trouvée) dans le nom du fichier (ex : "Facture eau %date%" donnera "Facture eau 02-07-2014.pdf"). Ne pas ajouter .pdf à la fin, le programme s'en charge. Si le fichier de sortie existe déjà, un compteur sera ajouté (ex : "Facture eau 02-07-2014.0.pdf")<br /><br />
+    <b>Texte d'extraction de la date</b><br />Texte permettant de retrouver la date du document.Exemple : "facture du %date%". Il est possible de préciser le format de la date recherchée :
+    <ul>
+        <li>%date% : Chercher tous les formats de dates gérés les uns après les autres si pas de résultat, dans l'ordre ci-dessous.</li>
+        <li>%date_texte% : Chercher une date du format "02 juillet (20)14"</li>
+        <li>%date_slash% : Chercher une date du format "02/07/2014"</li>
+        <li>%date_tiret% : Chercher une date du format "02/07/2014"</li>
+    </ul><br /><br />
+</div>

@@ -1,0 +1,59 @@
+<html>
+    <head>
+    	<title>{% if page_title is defined %}Scafo - {{ page_title }}{% else %}Scafo - Scan & Forget !{% endif %}</title>
+        <!--<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css" />-->
+        <link rel="stylesheet" href="/bundles/wpierrescafoscafo/css/style.css" />
+        <script type="text/javascript" src="/bundles/wpierrescafoscafo/js/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="/bundles/wpierrescafoscafo/jquery-ui/jquery-ui.js"></script>
+        <link rel="stylesheet" href="/bundles/wpierrescafoscafo/jquery-ui/jquery-ui.css"/>
+        <!-- Bootstrap core CSS -->
+    	<link href="/bundles/wpierrescafoscafo/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    	<!-- Bootstrap theme -->
+    	<link href="/bundles/wpierrescafoscafo/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    	<!-- Theme du site -->
+    	<link href="/bundles/wpierrescafoscafo/css/theme.css" rel="stylesheet">
+    	<!-- Bootstrap js -->
+    	<script type="text/javascript" src="/bundles/wpierrescafoscafo/bootstrap/js/bootstrap.min.js"></script>
+    	
+    </head>
+    <body>
+
+  <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/" title="Scafo - Scan & Forget">Scafo</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            {%  if instance != null %}
+            <li class="active"><a href="/Instance/{{ instance.getId }}/">{{ instance.getInstanceName }}</a></li>
+            <li><a href="/Instance/edit/{{ instance.getId }}/">Paramétrer instance</a></li>
+            <li><a href="/Filters/list/{{ instance.getId }}/">Filtres</a></li>
+            {% else %}
+            <li><a href="/Test/">Vérification plateforme</a></li>
+            {% endif %}
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#contact">Projet GitHub</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container theme-showcase" role="main">
+    {% for type, messages in app.session.flashBag.all %}
+		{% for message in messages %}
+	
+			{%if type == 'error'%} {% set type = 'danger' %} {%endif%}
+			<div class="alert alert-{{ type }}" role="alert">
+				{{ message|raw }}
+			</div>
+		{% endfor %}
+	{% endfor %} 
+    

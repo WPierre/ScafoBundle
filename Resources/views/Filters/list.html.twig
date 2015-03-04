@@ -1,0 +1,27 @@
+
+{% include "WpierreScafoScafoBundle:Default:header.html.twig" with {"page_title":"Liste des filtres"}%}
+<h1>Filtres pour l'instance {{instance.instanceName}}</h1>
+<a href="/Filters/import/{{ instance.id }}/" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-down"></span> Importer des filtres</a>
+<div class="col-md-12">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Nom</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+			{% for filter in filters %}
+			<tr>
+				<td>{{ filter.title }}</td>
+				<td><a href="/Filters/edit/{{ filter.id }}/" class="btn btn-default btn-small"><i class="icon-white icon-wrench"></i> Modifier</a> 
+				<a href="/Filters/delete/{{ filter.id }}/" class="btn btn-danger btn-small"><i class="icon-white icon-remove-sign"></i> Supprimer</a></td>
+			</tr>
+			{% endfor %}
+            </tbody>
+          </table>
+        <a href="/Filters/create/{{instance.id}}" class="btn btn-success btn-small"><i class="icon-white icon-plus-sign"></i> Cr&eacute;er</a>
+</div>
+
+
+{% include "WpierreScafoScafoBundle:Default:footer.html.twig" %}

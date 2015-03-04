@@ -1,0 +1,29 @@
+{% include "WpierreScafoScafoBundle:Default:header.html.twig" with {"page_title":"Accueil"} %}
+
+<div class="jumbotron">
+	<h1>Scafo</h1>
+	<p>Scafo (Scan & Forget) is a simple projet for all who hate paperwork. When you get bills, papers, warranties, just throw it in your scanner, and forget it !<br />
+	The output format is PDF. Generated files are stored in a tree. You can use the ouput with a file manager software like <a href="http://www.owncloud.com">OwnCloud</a> or <a href="http://www.pyd.io">Pydio</a>.</p>
+</div>
+
+<div class="col-md-12">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Instance name</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+{% for instance in instances %}
+		<tr>
+			<td><a href="/Instance/{{ instance.id }}/">{{ instance.instanceName }}</a></td>
+			<td><a href="/Instance/edit/{{ instance.id }}/" class="btn btn-default btn-small"><i class="icon-white icon-wrench"></i> Modifier</a> 
+				<a href="/Instance/delete/{{ instance.id }}/" class="btn btn-danger btn-small"><i class="icon-white icon-remove-sign"></i> Supprimer</a></td>
+{% endfor %}
+            </tbody>
+          </table>
+        <a href="/Instance/create/" class="btn btn-success btn-small"><i class="icon-white icon-plus-sign"></i> Créer une instance</a>
+          </div>
+
+{% include "WpierreScafoScafoBundle:Default:footer.html.twig" %}

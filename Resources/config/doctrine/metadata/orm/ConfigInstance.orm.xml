@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="ConfigInstance" table="config_instance">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="instanceName" type="string" column="instance_name" length="20" nullable="false"/>
+  </entity>
+  <entity name="Parameter">
+        <many-to-one field="parameters" target-entity="ConfigInstance" inversed-by="parameters">
+            <join-column name="instance_id" referenced-column-name="id" />
+        </many-to-one>
+  </entity>
+  <entity name="Filter">
+        <many-to-one field="filters" target-entity="ConfigInstance" inversed-by="filters">
+            <join-column name="instance_id" referenced-column-name="id" />
+        </many-to-one>
+  </entity>
+</doctrine-mapping>
