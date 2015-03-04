@@ -15,7 +15,7 @@
 	},
 	"autoload" : {
 		"psr-4" : {
-			"Wpierre\\Scafo\\ScafoBundle" : ""
+			"Wpierre\\Scafo\\ScafoBundle\\" : ""
 		}
 	},
 	"keywords" : [
