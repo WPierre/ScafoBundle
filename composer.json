@@ -1,0 +1,31 @@
+{
+	"name" : "Scafo Bundle",
+	"description" : "A bundle made for scanning and sorting paperwork",
+	"minimum-stability" : "beta",
+	"homepage" : "https://github.com/WPierre/ScafoBundle",
+	"authors" : [{
+			"name" : "WPierre",
+			"homepage" : "https://github.com/WPierre",
+			"role" : "author"
+		}
+	],
+	"support" : {
+		"issues" : "https://github.com/WPierre/ScafoBundle/issues",
+		"source" : "https://github.com/WPierre/ScafoBundle"
+	},
+	"autoload" : {
+		"psr-4" : {
+			"Wpierre\\Scafo\\ScafoBundle" : ""
+		}
+	},
+	"keywords" : [
+		"scan",
+		"forget",
+		"paperwork"
+	],
+	"require" : {
+		"whiteoctober/tcpdf-bundle" : "dev-master",
+		"smalot/pdfparser" : "*"
+	},
+	"license" : "GPL-3.0"
+}
