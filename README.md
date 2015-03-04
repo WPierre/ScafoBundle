@@ -11,7 +11,7 @@ Scafo is still in beta, so you can expect bugs.
 How does it work ?
 ------------------
 
-For details, you should check the documentation.  
+For details, you should check the [documentation](/Documentation/howto.md).  
 Basically, you scan your papers in jpg files, put them in one of Scafo's Input folders, open Scafo's instance and run a sorting process. The scanned pages will be OCRized (the images will be converted to text) and according to the filters you defined, one of the filter will match your text and Scafo will know where to put the pdf file, how to name it and even how to extract the document's date.  
 Technically, Scafo requires a *AMP server and a Symfony installation. Check out the instructions below to see how to set it up !
 
@@ -40,10 +40,12 @@ Set up a virtual host for your server. There's a standard Apache Virtualhost fil
 You might want to remove Symfony's /web/.htaccess file to enable the dev environnement on the front page while Scafo is still in beta stage.
 
 ###Install Scafo
-Either copy the github's content in /src/WPierre, or run 
-> git clone adresse WPierre  
+Either copy the github's content in /src/Wpierre/Scafo/ScafoBundle, or run 
+> mkdir -p src/Wpierre/Scafo
+> cd src/Wpierre/Scafo
+> git clone adresse ScafoBundle
 
-from the /src directory. The goal is to have Scafo's Bundle class in /src/WPierre/Scafo/ScafoBundle
+from the /src directory. The goal is to have Scafo's Bundle class in /src/Wpierre/Scafo/ScafoBundle
 
 ###Install Scafo's requirements
 Edit your /composer.json file and add
