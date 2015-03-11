@@ -14,7 +14,7 @@
 	},
 	"autoload" : {
 		"psr-4" : {
-			"Wpierre\\Scafo\\ScafoBundle\\" : ""
+			"Wpierre\\Scafo\\ScafoBundle\\" : "src/"
 		}
 	},
 	"keywords" : [
@@ -23,8 +23,9 @@
 		"paperwork"
 	],
 	"require" : {
-		"whiteoctober/tcpdf-bundle" : "dev-master",
+		"whiteoctober/tcpdf-bundle" : "1.0.1",
 		"smalot/pdfparser" : "*"
 	},
-	"license" : "GPL-3.0"
+	"license" : "GPL-3.0",
+	"minimum-stability": "dev"
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Wpierre\Scafo\ScafoBundle;
+namespace WPierre\Scafo\ScafoBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

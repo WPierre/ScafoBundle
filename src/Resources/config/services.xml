@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <!--
+    <parameters>
+        <parameter key="wpierre_scafo_scafo.example.class">WPierre\Scafo\ScafoBundle\Example</parameter>
+    </parameters>
+
+    <services>
+        <service id="wpierre_scafo_scafo.example" class="%wpierre_scafo_scafo.example.class%">
+            <argument type="service" id="service_id" />
+            <argument>plain_value</argument>
+            <argument>%parameter_name%</argument>
+        </service>
+    </services>
+    -->
+    <parameters>
+        <parameter key="scafo.ocrservice.class">WPierre\Scafo\ScafoBundle\OCRService\OCRService</parameter>
+    </parameters>
+    <services>
+        <service id="scafo.ocrservice" class="%scafo.ocrservice.class%">
+        </service>
+    </services>
+</container>

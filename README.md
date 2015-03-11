@@ -39,25 +39,12 @@ on your webserver.
 Set up a virtual host for your server. There's a standard Apache Virtualhost file ready to be adapted in The Scafo/ScafoBundle/Extra/VirtualHost folder.
 You might want to remove Symfony's /web/.htaccess file to enable the dev environnement on the front page while Scafo is still in beta stage.
 
-###Install Scafo
-Either copy the github's content in /src/Wpierre/Scafo/ScafoBundle, or run 
-> mkdir -p src/Wpierre/Scafo
-> cd src/Wpierre/Scafo
-> git clone adresse ScafoBundle
-
-from the /src directory. The goal is to have Scafo's Bundle class in /src/Wpierre/Scafo/ScafoBundle
-
-###Install Scafo's requirements
-Edit your /composer.json file and add
-> "whiteoctober/tcpdf-bundle": "dev-master",  
-> "smalot/pdfparser": "*"
-
-Run this command to install the dependencies
-> composer update
+###Add GroceriesManager Bundle
+> php ../composer.phar require "wpierre/scafo":"dev-master"
 
 ###Enable Scafo and the dependencies in Symfony
 Edit your /app/AppKernel.php and add the text below to the list of enabled bundles :
-> new Wpierre\Scafo\ScafoBundle\WpierreScafoScafoBundle(),  
+> new WPierre\Scafo\ScafoBundle\WpierreScafoScafoBundle(),  
 > new WhiteOctober\TCPDFBundle\WhiteOctoberTCPDFBundle(),
 
 ###Enable Scafo's routes
@@ -90,6 +77,11 @@ If the database already exists, please use :
 
 If it doesn't exist yet, please use :
 > php app/console doctrine:database:create
+
+###Clear the caches
+Run these two commands to clear your Symfony caches :
+> php app/console cache:clear --env=dev
+> php app/console cache:clear --env=prod
 
 ###Test it !
 According to your virtual host configuration, this might change, but if you didn't change anything, open [http://localhost:8087](http://localhost:8087).  
