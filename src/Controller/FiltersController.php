@@ -13,18 +13,18 @@ class FiltersController extends Controller
     {
         
         $datas = Array();
-        $datas['instance'] = $this->get('doctrine')->getRepository('WpierreScafoScafoBundle:ConfigInstance')->findOneById($instance);
-        $datas['filters'] = $this->get('doctrine')->getManager()->getRepository('WpierreScafoScafoBundle:Filter')->getByInstanceOrdered($instance);
-        return $this->render('WpierreScafoScafoBundle:Filters:list.html.twig', $datas);
+        $datas['instance'] = $this->get('doctrine')->getRepository('WPierreScafoScafoBundle:ConfigInstance')->findOneById($instance);
+        $datas['filters'] = $this->get('doctrine')->getManager()->getRepository('WPierreScafoScafoBundle:Filter')->getByInstanceOrdered($instance);
+        return $this->render('WPierreScafoScafoBundle:Filters:list.html.twig', $datas);
     }
     
     public function createAction($id_instance)
     {
         $request = Request::createFromGlobals();
         $datas = Array();
-        $instance = $this->get('doctrine')->getRepository('WpierreScafoScafoBundle:ConfigInstance')->findOneById($id_instance);
+        $instance = $this->get('doctrine')->getRepository('WPierreScafoScafoBundle:ConfigInstance')->findOneById($id_instance);
         //Récupération des filtres classés par ordre pour gérer une liste
-        $filtres = $this->get('doctrine')->getManager()->getRepository('WpierreScafoScafoBundle:Filter')->getByInstanceOrdered($instance);
+        $filtres = $this->get('doctrine')->getManager()->getRepository('WPierreScafoScafoBundle:Filter')->getByInstanceOrdered($instance);
         $liste_filtres = array();
         $compteur = 0;
         $max_id = 0;
@@ -61,7 +61,7 @@ class FiltersController extends Controller
         
         if ($form->isValid()){
 
-            $filter->setOrderNumber($this->get('doctrine')->getManager()->getRepository('WpierreScafoScafoBundle:Filter')->makeRoomForNewFilterPosition($form->getData()->getOrderNumber(),$instance->getId()));
+            $filter->setOrderNumber($this->get('doctrine')->getManager()->getRepository('WPierreScafoScafoBundle:Filter')->makeRoomForNewFilterPosition($form->getData()->getOrderNumber(),$instance->getId()));
             $em = $this->getDoctrine()->getManager();
             $em->persist($filter);
             $em->flush();
@@ -70,7 +70,7 @@ class FiltersController extends Controller
         }
         $datas['instance'] = $instance;
         $datas['form'] = $form->createView();
-        return $this->render('WpierreScafoScafoBundle:Filters:create.html.twig', $datas);
+        return $this->render('WPierreScafoScafoBundle:Filters:create.html.twig', $datas);
     }
     
     public function editAction($id_filtre)
@@ -79,7 +79,7 @@ class FiltersController extends Controller
         //echo "le filtre trouvé a l id :".$id_filtre;
         $datas = Array();
         
-        $datas['filter'] = $this->get('doctrine')->getManager()->getRepository('WpierreScafoScafoBundle:Filter')->findOneById($id_filtre);
+        $datas['filter'] = $this->get('doctrine')->getManager()->getRepository('WPierreScafoScafoBundle:Filter')->findOneById($id_filtre);
         //sauvegarde du filtre dans une autre variable pour comparer l'ordernumber à la soumission
         $order_original = $datas['filter']->getOrderNumber();
         $datas['instance'] = $datas['filter']->getInstance();
@@ -87,7 +87,7 @@ class FiltersController extends Controller
         
         
         //Récupération des filtres classés par ordre pour gérer une liste
-        $filtres = $this->get('doctrine')->getManager()->getRepository('WpierreScafoScafoBundle:Filter')->getByInstanceOrdered($datas['instance']->getId());
+        $filtres = $this->get('doctrine')->getManager()->getRepository('WPierreScafoScafoBundle:Filter')->getByInstanceOrdered($datas['instance']->getId());
         $liste_filtres = array();
         $compteur = 0;
         $max_id = 0;
@@ -133,7 +133,7 @@ class FiltersController extends Controller
 	            //echo "l'ancien order number est : *".$order_original."*";
 	            //Si la position du filtre a changé, on lui fait de la place
 	            if ($form->getData()->getOrderNumber() != $order_original){
-	                $this->get('doctrine')->getManager()->getRepository('WpierreScafoScafoBundle:Filter')->makeRoomForNewFilterPosition($form->getData()->getOrderNumber(),$datas['instance']->getId());
+	                $this->get('doctrine')->getManager()->getRepository('WPierreScafoScafoBundle:Filter')->makeRoomForNewFilterPosition($form->getData()->getOrderNumber(),$datas['instance']->getId());
 	            }
 	            $em = $this->getDoctrine()->getManager();
 	            $em->persist($datas['filter']);
@@ -143,7 +143,7 @@ class FiltersController extends Controller
         	return $this->redirect($this->generateUrl('wpierre_scafo_scafo_filters',array("instance"=>$datas['instance']->getId())));
         }
         $datas['form'] = $form->createView();
-        return $this->render('WpierreScafoScafoBundle:Filters:edit.html.twig', $datas);
+        return $this->render('WPierreScafoScafoBundle:Filters:edit.html.twig', $datas);
     }
     
     public function deleteAction($id_filtre)
@@ -152,7 +152,7 @@ class FiltersController extends Controller
         //echo "le filtre trouvé a l id :".$id_filtre;
         $datas = Array();
         
-        $datas['filter'] = $this->get('doctrine')->getManager()->getRepository('WpierreScafoScafoBundle:Filter')->findOneById($id_filtre);
+        $datas['filter'] = $this->get('doctrine')->getManager()->getRepository('WPierreScafoScafoBundle:Filter')->findOneById($id_filtre);
         $datas['instance'] = $datas['filter']->getInstance();
         //Création du formulaire
         $form = $this->createFormBuilder($datas['filter'])
@@ -172,7 +172,7 @@ class FiltersController extends Controller
             return $this->redirect($this->generateUrl('wpierre_scafo_scafo_filters',array('instance'=>$datas['instance']->getId())));
         }
         $datas['form'] = $form->createView();
-        return $this->render('WpierreScafoScafoBundle:Filters:delete.html.twig', $datas);
+        return $this->render('WPierreScafoScafoBundle:Filters:delete.html.twig', $datas);
 
     }
     
@@ -182,7 +182,7 @@ class FiltersController extends Controller
     	//echo "le filtre trouvé a l id :".$id_filtre;
     	$datas = Array();
     
-    	$datas['instance'] = $this->get('doctrine')->getRepository('WpierreScafoScafoBundle:ConfigInstance')->findOneById($id_instance);
+    	$datas['instance'] = $this->get('doctrine')->getRepository('WPierreScafoScafoBundle:ConfigInstance')->findOneById($id_instance);
     
     
     
@@ -225,7 +225,7 @@ class FiltersController extends Controller
     			foreach($imports_a_faire as $import){
     				$filter = $examplesFilters->getFilterById($import);
     				$filter->setInstance($datas['instance']);
-    				$filter->setOrderNumber($this->get('doctrine')->getManager()->getRepository('WpierreScafoScafoBundle:Filter')->makeRoomForNewFilterPosition("last",$datas['instance']->getId()));
+    				$filter->setOrderNumber($this->get('doctrine')->getManager()->getRepository('WPierreScafoScafoBundle:Filter')->makeRoomForNewFilterPosition("last",$datas['instance']->getId()));
     				$em->persist($filter);
     				$em->flush();
     				$this->get('session')->getFlashBag()->add('success', 'Le filtre "'.$filter->getTitle().'" a bien été importé.');
@@ -235,7 +235,7 @@ class FiltersController extends Controller
     		return $this->redirect($this->generateUrl('wpierre_scafo_scafo_filters',array("instance"=>$datas['instance']->getId())));
     	}
     	$datas['form'] = $form->createView();
-    	return $this->render('WpierreScafoScafoBundle:Filters:import.html.twig', $datas);
+    	return $this->render('WPierreScafoScafoBundle:Filters:import.html.twig', $datas);
     }
     
 }

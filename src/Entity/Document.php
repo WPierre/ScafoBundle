@@ -188,7 +188,7 @@ class Document {
     
     public function refilterPdf(){
         $log = "";
-        $this->filter = $this->container->get('doctrine')->getManager()->getRepository('WpierreScafoScafoBundle:Filter')->getGoodFilter($this->getFullText());
+        $this->filter = $this->container->get('doctrine')->getManager()->getRepository('WPierreScafoScafoBundle:Filter')->getGoodFilter($this->getFullText());
             
         //initializing the output_path
         //$output_path = $this->getFolder("output", "Unindexed");
@@ -225,7 +225,7 @@ class Document {
                 $this->pdfObj->Image($this->sourceImages[$i],00,00,210,297);
             }
             
-            $this->filter = $this->container->get('doctrine')->getManager()->getRepository('WpierreScafoScafoBundle:Filter')->getGoodFilter($this->getFullText());
+            $this->filter = $this->container->get('doctrine')->getManager()->getRepository('WPierreScafoScafoBundle:Filter')->getGoodFilter($this->getFullText());
             
             //initializing the output_path
             //$output_path = $this->getFolder("output", "Unindexed");

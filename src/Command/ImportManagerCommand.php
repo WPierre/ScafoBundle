@@ -68,7 +68,7 @@ class ImportManagerCommand extends ContainerAwareCommand {
         //trying to get the profile asked for
         $profile = $input->getArgument('profile');
         
-        $this->config_instance = $this->getContainer()->get('doctrine')->getRepository('WpierreScafoScafoBundle:ConfigInstance')->findOneByInstanceName($profile);
+        $this->config_instance = $this->getContainer()->get('doctrine')->getRepository('WPierreScafoScafoBundle:ConfigInstance')->findOneByInstanceName($profile);
         $batchOperations = new BatchOperations($this->config_instance->getId(), $this->getContainer());
         $this->output = $batchOperations->executeFullRun();
         return $this->output;

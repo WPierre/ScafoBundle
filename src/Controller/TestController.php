@@ -57,7 +57,7 @@ class TestController extends Controller
         }
         
         //En dernier, test de la présence d'une instance et création si nécessaire
-        $datas['instances'] = $this->get('doctrine')->getRepository('WpierreScafoScafoBundle:ConfigInstance')->findAll();
+        $datas['instances'] = $this->get('doctrine')->getRepository('WPierreScafoScafoBundle:ConfigInstance')->findAll();
         if (count($datas['instances']) > 0 ){
         	$this->addMessage("success", "Configuration d'une instance par défaut", "Il y a déjà une instance de paramétrée. Aucun changement appliqué");
         } else {
@@ -115,7 +115,7 @@ class TestController extends Controller
         
         $datas['instance'] = null;
         $datas['messages'] = $this->message;
-        return $this->render('WpierreScafoScafoBundle:Test:index.html.twig', $datas);
+        return $this->render('WPierreScafoScafoBundle:Test:index.html.twig', $datas);
     }
     
     /**

@@ -288,7 +288,7 @@ class Filter
     	$text = strtolower($text);
     	//gather the filters
     	$filters = self::getDoctrine()
-    	->getRepository('WpierreScafoScafoBundle:Filter')->createQueryBuilder('f')->orderBy('f.order_number', 'ASC');
+    	->getRepository('WPierreScafoScafoBundle:Filter')->createQueryBuilder('f')->orderBy('f.order_number', 'ASC');
     	
     	//see if we can find a filter that matches with the text
     	foreach ($filters as $filter){

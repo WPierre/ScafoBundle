@@ -54,7 +54,7 @@ class BatchOperations {
         $logger = $this->container->get('logger');
     	$logger->info('Starting the index task...');
         
-        $this->config_instance = $this->container->get('doctrine')->getRepository('WpierreScafoScafoBundle:ConfigInstance')->findOneById($id_instance);
+        $this->config_instance = $this->container->get('doctrine')->getRepository('WPierreScafoScafoBundle:ConfigInstance')->findOneById($id_instance);
         
     }
     

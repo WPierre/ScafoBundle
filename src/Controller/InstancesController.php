@@ -15,26 +15,26 @@ class InstancesController extends Controller
     public function indexAction($id_instance)
     {
         $datas = Array();
-        $datas['instance'] = $this->get('doctrine')->getRepository('WpierreScafoScafoBundle:ConfigInstance')->findOneById($id_instance);
-        return $this->render('WpierreScafoScafoBundle:Instances:index.html.twig', $datas);
+        $datas['instance'] = $this->get('doctrine')->getRepository('WPierreScafoScafoBundle:ConfigInstance')->findOneById($id_instance);
+        return $this->render('WPierreScafoScafoBundle:Instances:index.html.twig', $datas);
     }
     
     public function runAction($action,$id_instance){
         $datas = Array();
         $datas['action'] = $action;
-        $datas['instance'] = $this->get('doctrine')->getRepository('WpierreScafoScafoBundle:ConfigInstance')->findOneById($id_instance);
+        $datas['instance'] = $this->get('doctrine')->getRepository('WPierreScafoScafoBundle:ConfigInstance')->findOneById($id_instance);
         $batchOperations = new BatchOperations($datas['instance']->getId(), $this);
         //TODO : Enlever le debug
         $batchOperations->setDebug(true);
         $datas['output'] = str_replace("\n", "<br />", $batchOperations->executeCommand($action));
-        return $this->render('WpierreScafoScafoBundle:Instances:run.html.twig', $datas);
+        return $this->render('WPierreScafoScafoBundle:Instances:run.html.twig', $datas);
 
     }
     
     public function getRemainingFilesAction($id_instance){
         $response = new JsonResponse();
         $datas = array();
-        $instance = $this->get('doctrine')->getRepository('WpierreScafoScafoBundle:ConfigInstance')->findOneById($id_instance);
+        $instance = $this->get('doctrine')->getRepository('WPierreScafoScafoBundle:ConfigInstance')->findOneById($id_instance);
         $datas['processFolderBy1'] = FilesOperations::getFilesCount(FilesOperations::getFolder($instance,'input','By_1',true));
         $datas['processFolderBy2'] = FilesOperations::getFilesCount(FilesOperations::getFolder($instance,'input','By_2',true));
         $datas['processFolderBy3'] = FilesOperations::getFilesCount(FilesOperations::getFolder($instance,'input','By_3',true));
@@ -50,7 +50,7 @@ class InstancesController extends Controller
     public function editAction($id_instance){
     	$request = Request::createFromGlobals();
     	$datas = Array();
-    	$datas['instance'] = $this->get('doctrine')->getRepository('WpierreScafoScafoBundle:ConfigInstance')->findOneById($id_instance);
+    	$datas['instance'] = $this->get('doctrine')->getRepository('WPierreScafoScafoBundle:ConfigInstance')->findOneById($id_instance);
     	$form = $this->createFormBuilder($datas['instance'])
     			->setMethod('POST')
                 ->add('instanceName','text',array('label'=>'Nom de l\'instance'))
@@ -91,7 +91,7 @@ class InstancesController extends Controller
         	}
 
         	if ($error){
-        		return $this->render('WpierreScafoScafoBundle:Instances:edit.html.twig', $datas);
+        		return $this->render('WPierreScafoScafoBundle:Instances:edit.html.twig', $datas);
         	}
         	
         	$em = $this->getDoctrine()->getManager();
@@ -109,7 +109,7 @@ class InstancesController extends Controller
         	return $this->redirect($this->generateUrl('wpierre_scafo_scafo_homepage',array()));
         }
         
-    	return $this->render('WpierreScafoScafoBundle:Instances:edit.html.twig', $datas);
+    	return $this->render('WPierreScafoScafoBundle:Instances:edit.html.twig', $datas);
     }
     
     public function createAction(){
@@ -160,13 +160,13 @@ class InstancesController extends Controller
     		return $this->redirect($this->generateUrl('wpierre_scafo_scafo_homepage',array()));
     	}
     
-    	return $this->render('WpierreScafoScafoBundle:Instances:create.html.twig', $datas);
+    	return $this->render('WPierreScafoScafoBundle:Instances:create.html.twig', $datas);
     }
     
     public function deleteAction($id_instance){
     	$request = Request::createFromGlobals();
     	$datas = Array();
-    	$datas['instance'] = $this->get('doctrine')->getRepository('WpierreScafoScafoBundle:ConfigInstance')->findOneById($id_instance);
+    	$datas['instance'] = $this->get('doctrine')->getRepository('WPierreScafoScafoBundle:ConfigInstance')->findOneById($id_instance);
     	$form = $this->createFormBuilder($datas['instance'])
     	->setMethod('POST')
     	->add('delete','submit',array('label'=>'Supprimer'))
@@ -188,6 +188,6 @@ class InstancesController extends Controller
     		return $this->redirect($this->generateUrl('wpierre_scafo_scafo_homepage',array()));
     	}
     
-    	return $this->render('WpierreScafoScafoBundle:Instances:delete.html.twig', $datas);
+    	return $this->render('WPierreScafoScafoBundle:Instances:delete.html.twig', $datas);
     }
 }
