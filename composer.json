@@ -14,7 +14,7 @@
 	},
 	"autoload" : {
 		"psr-4" : {
-			"Wpierre\\Scafo\\ScafoBundle\\" : "src/"
+			"WPierre\\Scafo\\ScafoBundle\\" : "src/"
 		}
 	},
 	"keywords" : [
@@ -27,5 +27,5 @@
 		"smalot/pdfparser" : "*"
 	},
 	"license" : "GPL-3.0",
-	"minimum-stability": "dev"
+	"minimum-stability" : "dev"
 }

@@ -35,22 +35,18 @@ Install symfony 2.6 (or later) and set it up with a database. If you're not fami
 
 on your webserver.
 
-###Install VirtualHost
-Set up a virtual host for your server. There's a standard Apache Virtualhost file ready to be adapted in The Scafo/ScafoBundle/Extra/VirtualHost folder.
-You might want to remove Symfony's /web/.htaccess file to enable the dev environnement on the front page while Scafo is still in beta stage.
-
-###Add GroceriesManager Bundle
+###Add Scafo Bundle
 > php ../composer.phar require "wpierre/scafo":"dev-master"
 
 ###Enable Scafo and the dependencies in Symfony
 Edit your /app/AppKernel.php and add the text below to the list of enabled bundles :
-> new WPierre\Scafo\ScafoBundle\WpierreScafoScafoBundle(),  
+> new WPierre\Scafo\ScafoBundle\WPierreScafoScafoBundle(),  
 > new WhiteOctober\TCPDFBundle\WhiteOctoberTCPDFBundle(),
 
 ###Enable Scafo's routes
 Edit your /app/config/routing.yml and add :
 > wpierre_scafo_scafo:  
-> &nbsp;&nbsp;&nbsp;&nbsp;resource: "@WpierreScafoScafoBundle/Resources/config/routing.xml"  
+> &nbsp;&nbsp;&nbsp;&nbsp;resource: "@WPierreScafoScafoBundle/Resources/config/routing.xml"  
 > &nbsp;&nbsp;&nbsp;&nbsp;prefix:   /  
 > &nbsp;&nbsp;&nbsp;&nbsp;type: xml
 
@@ -63,6 +59,10 @@ Edit your /app/config/config.yml and in the section "twig", add these lines :
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;resources: ['bootstrap_3_horizontal_layout.html.twig']  
 
 Same notice as previous step, four leding spaces for first line, eight for the next ones.
+
+###Install VirtualHost
+Set up a virtual host for your server. There's a standard Apache Virtualhost file ready to be adapted in The Scafo/ScafoBundle/Extra/VirtualHost folder.
+You might want to remove Symfony's /web/.htaccess file to enable the dev environnement on the front page while Scafo is still in beta stage.
 
 ###Install the assets
 Scafo's bundle contains several assets, including Bootstrap and jQuery. You have to install them using :
