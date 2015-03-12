@@ -5,43 +5,43 @@
     xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
     <route id="wpierre_scafo_scafo_homepage" pattern="/">
-        <default key="_controller">WpierreScafoScafoBundle:Default:index</default>
+        <default key="_controller">WPierreScafoScafoBundle:Default:index</default>
     </route>
     
     <route id="wpierre_scafo_scafo_instances_edit" pattern="/Instance/edit/{id_instance}/">
-        <default key="_controller">WpierreScafoScafoBundle:Instances:edit</default>
+        <default key="_controller">WPierreScafoScafoBundle:Instances:edit</default>
     </route>
     <route id="wpierre_scafo_scafo_instances_create" pattern="/Instance/create/">
-        <default key="_controller">WpierreScafoScafoBundle:Instances:create</default>
+        <default key="_controller">WPierreScafoScafoBundle:Instances:create</default>
     </route>
     <route id="wpierre_scafo_scafo_instances_delete" pattern="/Instance/delete/{id_instance}/">
-        <default key="_controller">WpierreScafoScafoBundle:Instances:delete</default>
+        <default key="_controller">WPierreScafoScafoBundle:Instances:delete</default>
     </route>
     <route id="wpierre_scafo_scafo_instances_run" pattern="/Instance/Run/{action}/{id_instance}/">
-        <default key="_controller">WpierreScafoScafoBundle:Instances:run</default>
+        <default key="_controller">WPierreScafoScafoBundle:Instances:run</default>
     </route>
     <route id="wpierre_scafo_scafo_instances_get_remaining_files" pattern="/Instance/GetRemaining/{id_instance}/">
-        <default key="_controller">WpierreScafoScafoBundle:Instances:getRemainingFiles</default>
+        <default key="_controller">WPierreScafoScafoBundle:Instances:getRemainingFiles</default>
     </route>
     <route id="wpierre_scafo_scafo_instances" pattern="/Instance/{id_instance}/">
-        <default key="_controller">WpierreScafoScafoBundle:Instances:index</default>
+        <default key="_controller">WPierreScafoScafoBundle:Instances:index</default>
     </route>
     <route id="wpierre_scafo_scafo_filters" path="/Filters/list/{instance}/">
-        <default key="_controller">WpierreScafoScafoBundle:Filters:list</default>
+        <default key="_controller">WPierreScafoScafoBundle:Filters:list</default>
     </route>
     <route id="wpierre_scafo_scafo_filters_edit" path="/Filters/edit/{id_filtre}/">
-        <default key="_controller">WpierreScafoScafoBundle:Filters:edit</default>
+        <default key="_controller">WPierreScafoScafoBundle:Filters:edit</default>
     </route>
     <route id="wpierre_scafo_scafo_filters_create" path="/Filters/create/{id_instance}/">
-        <default key="_controller">WpierreScafoScafoBundle:Filters:create</default>
+        <default key="_controller">WPierreScafoScafoBundle:Filters:create</default>
     </route>
     <route id="wpierre_scafo_scafo_filters_delete" path="/Filters/delete/{id_filtre}/">
-        <default key="_controller">WpierreScafoScafoBundle:Filters:delete</default>
+        <default key="_controller">WPierreScafoScafoBundle:Filters:delete</default>
     </route>
     <route id="wpierre_scafo_scafo_filters_delete" path="/Filters/import/{id_instance}/">
-        <default key="_controller">WpierreScafoScafoBundle:Filters:import</default>
+        <default key="_controller">WPierreScafoScafoBundle:Filters:import</default>
     </route>    
     <route id="wpierre_scafo_scafo_tests" path="/Test/">
-        <default key="_controller">WpierreScafoScafoBundle:Test:index</default>
+        <default key="_controller">WPierreScafoScafoBundle:Test:index</default>
     </route>
 </routes>
